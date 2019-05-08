@@ -1,0 +1,14 @@
+{
+    "name": "async-helpers",
+    "main": "index.js",
+    "module": "dist/main.mjs",
+    "dependencies": {
+        "esm": "^3.2.22"
+    },
+    "devDependencies": {
+        "uglify-es": "^3.3.9"
+    },
+    "scripts": {
+        "build": "node --experimental-modules build.mjs"
+    }
+}
