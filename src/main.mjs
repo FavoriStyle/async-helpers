@@ -1,3 +1,7 @@
+function wait(ms){
+    return new Promise(r => setTimeout(r, ms))
+}
+
 export const Awaiter = (() => {
     const storage = Symbol();
     const promiseMethods = Object.getOwnPropertyNames(Promise.prototype).filter(v => v !== 'constructor' && typeof Promise.prototype[v] === 'function');
