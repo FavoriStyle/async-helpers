@@ -30,7 +30,7 @@ let i = 0;
 const interval = new Interval(() => {
     console.log(`${++i}s. after...`)
 }, 1000);
-setTimeout(awaiter.resolve.bind(awaiter), 10000);
+setTimeout(interval.resolve.bind(interval), 10000);
 (async () => {
     console.log('You know what it mean. interval val:', await interval)
 })()
@@ -41,11 +41,16 @@ Pure `setInterval` implementation can't deal with async function as well. I mean
 ```javascript
 import { Interval } from 'async-helpers'
 
-let i = 0;
-const interval = new Interval(() => {
-    console.log(`${++i}s. after...`)
+function wait(time){
+    return new Promise(r => setTimeout(r, time))
+}
+
+const interval = new Interval.Async(async () => {
+    console.log('1s interval...');
+    await wait(3000);
+    console.log('and 3s async function')
 }, 1000);
-setTimeout(awaiter.resolve.bind(awaiter), 10000);
+setTimeout(interval.resolve.bind(interval), 10000);
 (async () => {
     console.log('You know what it mean. interval val:', await interval)
 })()
